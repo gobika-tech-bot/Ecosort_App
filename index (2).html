@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ECOSORT AI — Intelligent Waste Segregation & Eco-Reward System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="app-container">
+
+        <!-- Screen 1: Login -->
+        <section id="login-screen" class="screen active">
+            <div class="glass-card">
+                <div class="logo">
+                    <h2>ECOSORT AI</h2>
+                    <p>Intelligent Waste Segregation</p>
+                </div>
+                <form id="login-form">
+                    <div class="input-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" required placeholder="eco@user.com">
+                    </div>
+                    <div class="input-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" required placeholder="Enter password (123456)">
+                    </div>
+                    <div id="login-error" class="error-msg"></div>
+                    <button type="submit" class="btn primary-btn glow">Login</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Screen 2: QR Scan -->
+        <section id="scan-screen" class="screen">
+            <div class="glass-card text-center">
+                <h2>Scan Waste QR</h2>
+                <p>Align the QR code to start the sorting process</p>
+
+                <div class="scanner-container">
+                    <div class="qr-placeholder">
+                        <div class="scan-line" id="scan-line"></div>
+                        <img src="qr-code.jpeg" class="qr-image" alt="Waste QR Code">
+                    </div>
+                </div>
+
+                <div id="scan-success-msg" class="success-msg hidden">✓ Scan Successful — Welcome, Eco User!</div>
+                <button id="btn-scan" class="btn primary-btn glow mt-20">Scan QR</button>
+            </div>
+        </section>
+
+        <!-- Screen 3: Waste Type Selection -->
+        <section id="type-screen" class="screen">
+            <div class="glass-card text-center">
+                <h2>Select Waste Type</h2>
+                <p>Help the AI categorize the scanned item</p>
+
+                <div class="waste-types">
+                    <div class="waste-card" data-type="dry">
+                        <div class="icon">🍂</div>
+                        <h3>Dry Waste</h3>
+                        <p>Paper, plastic, glass</p>
+                    </div>
+                    <div class="waste-card" data-type="wet">
+                        <div class="icon">💧</div>
+                        <h3>Wet Waste</h3>
+                        <p>Food, organic matter</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Screen 4: Weight Measurement -->
+        <section id="weight-screen" class="screen">
+            <div class="glass-card text-center">
+                <h2>Measuring Weight</h2>
+                <div class="measurement-container">
+                    <div id="measuring-loader" class="loader">
+                        <div class="spinner"></div>
+                        <p>Measuring...</p>
+                    </div>
+                    <div id="weight-result" class="weight-display hidden">
+                        <span id="weight-value">0</span><span class="unit">g</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Screen 5: Automatic Sorting -->
+        <section id="sorting-screen" class="screen">
+            <div class="glass-card text-center">
+                <h2>Sorting Waste</h2>
+                <div class="sorting-container">
+                    <div class="sorting-animation">
+                        <div class="box"></div>
+                        <div class="arrow">⬇️</div>
+                        <div class="bin">🗑️</div>
+                    </div>
+                    <p id="sorting-status">Analyzing and sorting...</p>
+                    <h3 id="sorting-success" class="success-msg hidden">✓ Waste Sorted Successfully</h3>
+                </div>
+            </div>
+        </section>
+
+        <!-- Screen 6: Eco Points -->
+        <section id="points-screen" class="screen">
+            <div class="glass-card text-center">
+                <h2>Eco Points Earned!</h2>
+                <div class="points-container">
+                    <div class="points-circle glow-circle">
+                        <span class="plus">+</span><span id="points-added">10</span>
+                    </div>
+                    <div class="total-points-display">
+                        Total Points: <strong id="total-points">0</strong>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" id="points-progress"></div>
+                    </div>
+                </div>
+                <p class="points-msg">Great job! You are making a difference.</p>
+                <button id="btn-next-badge" class="btn primary-btn glow mt-20">View Reward</button>
+            </div>
+        </section>
+
+        <!-- Screen 7: Reward Badge -->
+        <section id="badge-screen" class="screen">
+            <div class="glass-card text-center">
+                <h2>Your Eco Badge</h2>
+                <div class="badge-container">
+                    <div id="badge-icon" class="badge-icon glow-icon">🌱</div>
+                    <h3 id="badge-title">Beginner</h3>
+                    <p id="badge-desc">Start your eco journey!</p>
+                </div>
+
+                <div class="feedback-quotes">
+                    <p id="random-quote" class="italic-quote">“Small action. Big impact. Keep going! 💚”</p>
+                </div>
+
+                <button id="btn-sort-another" class="btn outline-btn mt-20">Sort Another Item</button>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- App Logic -->
+    <script src="script.js"></script>
+</body>
+
+</html>
