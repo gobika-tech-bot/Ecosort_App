@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ECOSORT AI — Intelligent Waste Segregation & Eco-Reward Platform</title>
+    <meta name="description" content="AI-Powered Waste Segregation and Eco-Reward System. Scan waste, segregate automatically, and earn rewards for a cleaner planet.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Header / Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-icon">🌿</span>
+                <span class="logo-text">ECOSORT <span class="highlight">AI</span></span>
+            </div>
+            <nav class="nav-links">
+                <a href="#hero">Home</a>
+                <a href="#simulator">App Simulator</a>
+                <a href="#features">Features</a>
+                <a href="#qr-generator">Generate QR</a>
+                <a href="#deploy">Public Deployment</a>
+            </nav>
+            <button class="nav-btn" onclick="scrollToSection('simulator')">Try App Demo</button>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main>
+
+        <!-- Hero Section -->
+        <section id="hero" class="hero-section">
+            <div class="hero-content">
+                <div class="badge-pill">✨ AI-Powered Sustainability</div>
+                <h1>Intelligent Waste Segregation & <span class="neon-text">Eco-Reward System</span></h1>
+                <p>Empowering communities to recycle smarter. Scan waste with smart QR codes, let AI sort wet & dry materials, earn points, and unlock eco-hero badges.</p>
+                <div class="hero-actions">
+                    <a href="#simulator" class="btn primary-btn glow">Launch App Demo</a>
+                    <a href="#qr-generator" class="btn outline-btn">Generate Website QR</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-num" id="stat-sorted">12,450+</span>
+                        <span class="stat-label">Items Sorted</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-num" id="stat-co2">1.8 Tons</span>
+                        <span class="stat-label">CO₂ Offset</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-num" id="stat-accuracy">99.4%</span>
+                        <span class="stat-label">AI Accuracy</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive App Simulator Section -->
+        <section id="simulator" class="simulator-section">
+            <div class="section-header">
+                <h2>Interactive Mobile App Experience</h2>
+                <p>Test the full 7-step ECOSORT AI user workflow directly below</p>
+            </div>
+
+            <div class="app-container">
+
+                <!-- Screen 1: Login -->
+                <section id="login-screen" class="screen active">
+                    <div class="glass-card">
+                        <div class="logo">
+                            <h2>ECOSORT AI</h2>
+                            <p>Intelligent Waste Segregation</p>
+                        </div>
+                        <form id="login-form">
+                            <div class="input-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" required placeholder="eco@user.com">
+                            </div>
+                            <div class="input-group">
+                                <label for="password">Password</label>
+                                <input type="password" id="password" required placeholder="Enter password (123456)">
+                            </div>
+                            <div id="login-error" class="error-msg"></div>
+                            <button type="submit" class="btn primary-btn glow">Login to App</button>
+                        </form>
+                    </div>
+                </section>
+
+                <!-- Screen 2: QR Scan -->
+                <section id="scan-screen" class="screen">
+                    <div class="glass-card text-center">
+                        <h2>Scan Waste QR</h2>
+                        <p>Align the QR code to start the sorting process</p>
+
+                        <div class="scanner-container">
+                            <div class="qr-placeholder">
+                                <div class="scan-line" id="scan-line"></div>
+                                <img src="QR.jfif" class="qr-image" alt="Waste QR Code">
+                            </div>
+                        </div>
+
+                        <div id="scan-success-msg" class="success-msg hidden">✓ Scan Successful — Welcome, Eco User!</div>
+                        <button id="btn-scan" class="btn primary-btn glow mt-20">Scan QR</button>
+                    </div>
+                </section>
+
+                <!-- Screen 3: Waste Type Selection -->
+                <section id="type-screen" class="screen">
+                    <div class="glass-card text-center">
+                        <h2>Select Waste Type</h2>
+                        <p>Help the AI categorize the scanned item</p>
+
+                        <div class="waste-types">
+                            <div class="waste-card" data-type="dry">
+                                <div class="icon">🍂</div>
+                                <h3>Dry Waste</h3>
+                                <p>Paper, plastic, glass</p>
+                            </div>
+                            <div class="waste-card" data-type="wet">
+                                <div class="icon">💧</div>
+                                <h3>Wet Waste</h3>
+                                <p>Food, organic matter</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Screen 4: Weight Measurement -->
+                <section id="weight-screen" class="screen">
+                    <div class="glass-card text-center">
+                        <h2>Measuring Weight</h2>
+                        <div class="measurement-container">
+                            <div id="measuring-loader" class="loader">
+                                <div class="spinner"></div>
+                                <p>Measuring...</p>
+                            </div>
+                            <div id="weight-result" class="weight-display hidden">
+                                <span id="weight-value">0</span><span class="unit">g</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Screen 5: Automatic Sorting -->
+                <section id="sorting-screen" class="screen">
+                    <div class="glass-card text-center">
+                        <h2>Sorting Waste</h2>
+                        <div class="sorting-container">
+                            <div class="sorting-animation">
+                                <div class="box"></div>
+                                <div class="arrow">⬇️</div>
+                                <div class="bin">🗑️</div>
+                            </div>
+                            <p id="sorting-status">Analyzing and sorting...</p>
+                            <h3 id="sorting-success" class="success-msg hidden">✓ Waste Sorted Successfully</h3>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Screen 6: Eco Points -->
+                <section id="points-screen" class="screen">
+                    <div class="glass-card text-center">
+                        <h2>Eco Points Earned!</h2>
+                        <div class="points-container">
+                            <div class="points-circle glow-circle">
+                                <span class="plus">+</span><span id="points-added">10</span>
+                            </div>
+                            <div class="total-points-display">
+                                Total Points: <strong id="total-points">0</strong>
+                            </div>
+                            <div class="progress-bar-container">
+                                <div class="progress-bar" id="points-progress"></div>
+                            </div>
+                        </div>
+                        <p class="points-msg">Great job! You are making a difference.</p>
+                        <button id="btn-next-badge" class="btn primary-btn glow mt-20">View Reward</button>
+                    </div>
+                </section>
+
+                <!-- Screen 7: Reward Badge -->
+                <section id="badge-screen" class="screen">
+                    <div class="glass-card text-center">
+                        <h2>Your Eco Badge</h2>
+                        <div class="badge-container">
+                            <div id="badge-icon" class="badge-icon glow-icon">🌱</div>
+                            <h3 id="badge-title">Beginner</h3>
+                            <p id="badge-desc">Start your eco journey!</p>
+                        </div>
+
+                        <div class="feedback-quotes">
+                            <p id="random-quote" class="italic-quote">“Small action. Big impact. Keep going! 💚”</p>
+                        </div>
+
+                        <button id="btn-sort-another" class="btn outline-btn mt-20">Sort Another Item</button>
+                    </div>
+                </section>
+
+            </div>
+        </section>
+
+        <!-- Features Grid -->
+        <section id="features" class="features-section">
+            <div class="section-header">
+                <h2>Key Project Features</h2>
+                <p>Designed for Smart Cities, Eco Hubs, and Recycling Initiatives</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <h3>Smart QR Scanner</h3>
+                    <p>Scans waste containers instantly to initiate automated categorization and user authentication.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3>AI Waste Segregation</h3>
+                    <p>Accurately classifies dry waste (paper, plastic, glass) and wet waste (organic, food waste).</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚖️</div>
+                    <h3>Precision Weight Sensor</h3>
+                    <p>Integrated load sensors measure item weight automatically for transparent points calculation.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎁</div>
+                    <h3>Gamified Eco Rewards</h3>
+                    <p>Users accumulate Eco Points and earn progressive badges (Beginner, Eco Saver, Green Hero, Eco Champion).</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔥</div>
+                    <h3>Firebase Real-Time Logging</h3>
+                    <p>Every scan, waste type, and weight datapoint is logged to Firebase Realtime Database for live analytics.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📲</div>
+                    <h3>Instant Scannable QR</h3>
+                    <p>Easily generate a QR code for your public project URL to let anyone access the application on their phone.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Live QR Generator Section -->
+        <section id="qr-generator" class="qr-section">
+            <div class="section-header">
+                <h2>Public Live URL & QR Code Generator</h2>
+                <p>Enter your public deployed website URL to instantly generate a scannable QR code!</p>
+            </div>
+            <div class="qr-generator-card glass-card">
+                <div class="qr-inputs">
+                    <label for="public-url-input">Project Public Website URL</label>
+                    <div class="url-input-wrapper">
+                        <input type="url" id="public-url-input" placeholder="https://your-project.vercel.app" value="https://ecosort-ai.vercel.app">
+                        <button id="btn-generate-qr" class="btn primary-btn">Generate QR Code</button>
+                    </div>
+                </div>
+
+                <div class="qr-result-box">
+                    <div class="qr-preview-wrapper" id="qr-preview-wrapper">
+                        <img id="generated-qr-img" src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://ecosort-ai.vercel.app" alt="Project QR Code">
+                    </div>
+                    <p class="qr-instruction">Scan this QR code with any smartphone camera to open the live project website.</p>
+                    <a id="download-qr-btn" href="https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=https://ecosort-ai.vercel.app" target="_blank" download="ecosort-qr-code.png" class="btn outline-btn">Download High-Res QR Code</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Deployment Guide Section -->
+        <section id="deploy" class="deploy-section">
+            <div class="section-header">
+                <h2>Publish & Get Your Free Public URL</h2>
+                <p>Deploy your project in under 1 minute using any of these free hosting services:</p>
+            </div>
+
+            <div class="deploy-cards">
+                <div class="deploy-card">
+                    <h3>1. Vercel (Recommended)</h3>
+                    <p>Run `npx vercel` in your terminal or connect your GitHub repo for instant HTTPS deployment.</p>
+                    <code class="command-box">npx vercel</code>
+                </div>
+                <div class="deploy-card">
+                    <h3>2. Netlify</h3>
+                    <p>Drag & drop the project folder directly into the Netlify Drop dashboard or deploy via CLI.</p>
+                    <code class="command-box">npx netlify deploy</code>
+                </div>
+                <div class="deploy-card">
+                    <h3>3. GitHub Pages</h3>
+                    <p>Push code to a GitHub repository and enable GitHub Pages under Repository Settings.</p>
+                    <code class="command-box">git push origin main</code>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2026 ECOSORT AI — Intelligent Waste Segregation & Eco-Reward Platform. Built for a Greener Planet 💚</p>
+    </footer>
+
+    <!-- App Logic -->
+    <script src="script.js"></script>
+</body>
+
+</html>
